@@ -171,15 +171,27 @@ describe("Routes for User", function(){
          });
         
          it("Should send missing param error | No params sent", function(done){
-             request(app)
-                .patch('/api/user')
-                .send({})
-                .expect(400)
-                .end(function(err, res){
-                    expect(res.body.message).to.eql(returnUtils.getI18nMessage("MISSING_PARAM"));
-                    expect(res.body.content).to.eql(null);
-                    done();
-                });
+
+            const Users = app.db.models.Users;
+            const accessToken = "1234";
+            const phone = "+557188888888";
+            const newName = "Cassiano";
+
+            Users.create({
+                phone: phone,
+                accessToken: accessToken
+            }).then(function(){
+                request(app)
+                    .patch('/api/user')
+                    .set("Authorization", accessToken)
+                    .send({})
+                    .expect(400)
+                    .end(function(err, res){
+                        expect(res.body.message).to.eql(returnUtils.getI18nMessage("MISSING_PARAM"));
+                        expect(res.body.content).to.eql(null);
+                        done();
+                    });
+            })
          });
     });
     
