@@ -5,8 +5,10 @@
   "scripts": {
     "start": "set NODE_ENV=production && node app.js",
     "test": "NODE_ENV=test node ./node_modules/mocha/bin/mocha -t 15000",
+    "test-windows" : "set NODE_ENV=test && node ./node_modules/mocha/bin/mocha -t 15000",
     "ci": "NODE_ENV=ci node ./node_modules/mocha/bin/mocha -t 15000",
-    "dev": "NODE_ENV=dev nodemon app.js"
+    "dev": "NODE_ENV=dev nodemon app.js",
+    "dev-windows": "set NODE_ENV=dev && node app.js"
   },
   "dependencies": {
     "bcrypt": "^1.0.2",

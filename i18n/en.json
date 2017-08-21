@@ -8,6 +8,7 @@
         "USER_UPDATED": "User updated with success",
         "USER_ACTIVATED": "User activated with success",
 	"USER_INSERTED": "User inserted with success",
+	"PHOTO_UPDATED": "Photo updated with success",
 	"ACTIVATION_CODE_RESENT": "Activation code resent with success",
     
 	"CONTACT_INSERTED": "Contact inserted with success",

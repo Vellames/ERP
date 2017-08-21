@@ -124,7 +124,7 @@ describe("Routes for User", function(){
       ======================== PATCH | /api/user =========================
     */
     
-    /*describe("PATCH | /api/user", function(){
+    describe("PATCH | /api/user", function(){
         
         it("Should update the user name", function(done){
             
@@ -181,7 +181,7 @@ describe("Routes for User", function(){
                     done();
                 });
          });
-    });*/
+    });
     
     /*
       ======================== POST | /api/user/activate =========================

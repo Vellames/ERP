@@ -11,11 +11,13 @@ module.exports = function(app){
     
     app.route("/api/user")
         .put(controller.insert)
+        .patch(controller.update)
         .get(controller.get);
+
 
     app.post("/api/user", multiparty(), function(req,res){
         securityConfig.checkAuthorization(req, res, function(){
-            controller.update(req,res);
+            controller.updatePhoto(req,res);
         })
     });
 
