@@ -19,16 +19,14 @@ module.exports = function(app){
         * @author Cassiano Vellames <c.vellames@outlook.com>
         */
         get: function(req,res){
-            securityConfig.checkAuthorization(req, res, function(){
-                Users.findOne({
-                    where: {
-                        accessToken : req.headers.authorization
-                    }
-                }).then(function(user){
-                    res.status(returnUtils.OK_REQUEST).json(returnUtils.requestCompleted(null, user))
-                }).catch(function(){
-                    res.status(returnUtils.INTERNAL_SERVER_ERROR).json(returnUtils.internalServerError(req.headers.locale));
-                });
+            Users.findOne({
+                where: {
+                    accessToken : req.headers.authorization
+                }
+            }).then(function(user){
+                res.status(returnUtils.OK_REQUEST).json(returnUtils.requestCompleted(null, user))
+            }).catch(function(){
+                res.status(returnUtils.INTERNAL_SERVER_ERROR).json(returnUtils.internalServerError(req.headers.locale));
             });
         },
         
@@ -89,22 +87,20 @@ module.exports = function(app){
                 return;
             };
 
-            securityConfig.checkAuthorization(req, res, function(){
-                Users.update({
-                    name: req.body.name
-                },{where: {
-                    accessToken : req.headers.authorization
-                }
-                }).then(function(user){
-                    if(user == 1){
-                        const msg = returnUtils.getI18nMessage("USER_UPDATED", req.headers.locale);
-                        res.status(returnUtils.OK_REQUEST).json(returnUtils.requestCompleted(msg));
-                    } else {
-                        res.status(returnUtils.INTERNAL_SERVER_ERROR).json(returnUtils.internalServerError(req.headers.locale));
-                    }
-                }).catch(function(){
+            Users.update({
+                name: req.body.name
+            },{where: {
+                accessToken : req.headers.authorization
+            }
+            }).then(function(user){
+                if(user == 1){
+                    const msg = returnUtils.getI18nMessage("USER_UPDATED", req.headers.locale);
+                    res.status(returnUtils.OK_REQUEST).json(returnUtils.requestCompleted(msg));
+                } else {
                     res.status(returnUtils.INTERNAL_SERVER_ERROR).json(returnUtils.internalServerError(req.headers.locale));
-                });
+                }
+            }).catch(function(){
+                res.status(returnUtils.INTERNAL_SERVER_ERROR).json(returnUtils.internalServerError(req.headers.locale));
             });
         },
 
@@ -117,7 +113,7 @@ module.exports = function(app){
                 if(err){
                     res.status(returnUtils.BAD_REQUEST).json(returnUtils.requestFailed(err));
                 } else {
-                    const msg = returnUtils.getI18nMessage("USER_UPDATED", req.headers.locale);
+                    const msg = returnUtils.getI18nMessage("PHOTO_UPDATED", req.headers.locale);
                     res.status(returnUtils.OK_REQUEST).json(returnUtils.requestCompleted(msg));
                 }
             });

@@ -1,0 +1,49 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'run',
+1 verbose cli   'test-windows' ]
+2 info using npm@3.10.10
+3 info using node@v6.10.1
+4 verbose run-script [ 'pretest-windows', 'test-windows', 'posttest-windows' ]
+5 info lifecycle safeapp@0.1.0~pretest-windows: safeapp@0.1.0
+6 silly lifecycle safeapp@0.1.0~pretest-windows: no script for pretest-windows, continuing
+7 info lifecycle safeapp@0.1.0~test-windows: safeapp@0.1.0
+8 verbose lifecycle safeapp@0.1.0~test-windows: unsafe-perm in lifecycle true
+9 verbose lifecycle safeapp@0.1.0~test-windows: PATH: C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;C:\Users\cassiano.vellames.TOPOS\Documents\_projects\SafeApp\node_modules\.bin;C:\Python27\;C:\Python27\Scripts;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\TortoiseSVN\bin;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files\MySQL\MySQL Utilities 1.6\;C:\Users\cassiano.vellames\AppData\Local\Android\sdk\tools\;C:\Users\cassiano.vellames\AppData\Local\Android\sdk\platform-tools\;C:\Program Files (x86)\GtkSharp\2.12\bin;C:\Program Files (x86)\Brackets\command;C:\Program Files (x86)\Yarn\bin;C:\Users\cassiano.vellames.TOPOS\AppData\Local\Microsoft\WindowsApps;C:\Users\cassiano.vellames.TOPOS\AppData\Local\.meteor\;C:\xampp\php;C:\Program Files\Heroku\bin;C:\Program Files (x86)\Microsoft VS Code\bin;C:\Users\cassiano.vellames.TOPOS\AppData\Local\Yarn\bin
+10 verbose lifecycle safeapp@0.1.0~test-windows: CWD: C:\Users\cassiano.vellames.TOPOS\Documents\_projects\SafeApp
+11 silly lifecycle safeapp@0.1.0~test-windows: Args: [ '/d /s /c',
+11 silly lifecycle   'set NODE_ENV=test && node ./node_modules/mocha/bin/mocha -t 15000' ]
+12 silly lifecycle safeapp@0.1.0~test-windows: Returned: code: 7  signal: null
+13 info lifecycle safeapp@0.1.0~test-windows: Failed to exec test-windows script
+14 verbose stack Error: safeapp@0.1.0 test-windows: `set NODE_ENV=test && node ./node_modules/mocha/bin/mocha -t 15000`
+14 verbose stack Exit status 7
+14 verbose stack     at EventEmitter.<anonymous> (C:\Program Files\nodejs\node_modules\npm\lib\utils\lifecycle.js:255:16)
+14 verbose stack     at emitTwo (events.js:106:13)
+14 verbose stack     at EventEmitter.emit (events.js:191:7)
+14 verbose stack     at ChildProcess.<anonymous> (C:\Program Files\nodejs\node_modules\npm\lib\utils\spawn.js:40:14)
+14 verbose stack     at emitTwo (events.js:106:13)
+14 verbose stack     at ChildProcess.emit (events.js:191:7)
+14 verbose stack     at maybeClose (internal/child_process.js:886:16)
+14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
+15 verbose pkgid safeapp@0.1.0
+16 verbose cwd C:\Users\cassiano.vellames.TOPOS\Documents\_projects\SafeApp
+17 error Windows_NT 10.0.15063
+18 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "run" "test-windows"
+19 error node v6.10.1
+20 error npm  v3.10.10
+21 error code ELIFECYCLE
+22 error safeapp@0.1.0 test-windows: `set NODE_ENV=test && node ./node_modules/mocha/bin/mocha -t 15000`
+22 error Exit status 7
+23 error Failed at the safeapp@0.1.0 test-windows script 'set NODE_ENV=test && node ./node_modules/mocha/bin/mocha -t 15000'.
+23 error Make sure you have the latest version of node.js and npm installed.
+23 error If you do, this is most likely a problem with the safeapp package,
+23 error not with npm itself.
+23 error Tell the author that this fails on your system:
+23 error     set NODE_ENV=test && node ./node_modules/mocha/bin/mocha -t 15000
+23 error You can get information on how to open an issue for this project with:
+23 error     npm bugs safeapp
+23 error Or if that isn't available, you can get their info via:
+23 error     npm owner ls safeapp
+23 error There is likely additional logging output above.
+24 verbose exit [ 1, true ]

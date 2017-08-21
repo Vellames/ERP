@@ -10,23 +10,13 @@ module.exports = function(app){
     var controller = app.controllers.user;
     
     app.route("/api/user")
+        .post(multiparty(), controller.updatePhoto)
         .put(controller.insert)
         .patch(controller.update)
         .get(controller.get);
-
-
-    app.post("/api/user", multiparty(), function(req,res){
-        securityConfig.checkAuthorization(req, res, function(){
-            controller.updatePhoto(req,res);
-        })
-    });
-
-    app.route("/api/user/activate").
-        post(controller.checkActivationCode);
+    app.post("/api/user/activate", controller.checkActivationCode)
     
     app.get("/", function(req,res){
         res.json({"Hi" : "Aloha!!!!!!!!!"})
     });
-
-    
 };

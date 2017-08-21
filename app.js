@@ -30,12 +30,15 @@ app.i18n = i18n;
 // Config body-parser
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
-app.use(function(err,req,res,next){
-    //Check errors in JSON
-    if(err.stack){
-        //res.status(returnUtils.BAD_REQUEST).json(returnUtils.invalidJSON(req.headers.locale));
+
+// Middware for authorization routes
+const securityConfig = require("./config/security")(app);
+app.use(function(req,res,next){
+    if(app.core.authorization[req.path].indexOf(req.method) >= 0){
+        securityConfig.checkAuthorization(req, res, function(){
+            next();
+        });
     } else {
-        //delete req.body.id;
         next();
     }
 });
