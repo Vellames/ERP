@@ -30,10 +30,9 @@ module.exports = {
     authorization: {
         "/api/user" : ["GET", "PATCH"],
         "/api/user/": ["POST"],
-        "/api/user/activate" : ["POST"], 
+        "/api/user/activate" : [], 
         "/api/contact" : ["POST", "PUT", "DELETE"],
         "/api/contact/:contactId" : ["GET"],
         "/api/contacts" : ["GET"]
-        
     }
 }
