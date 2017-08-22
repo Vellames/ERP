@@ -8,6 +8,7 @@ const bodyParser = require("body-parser");
 const express = require("express");
 const expressLoad = require("express-load");
 const i18n = require("i18n");
+const cluster = require("cluster");
 
 // My Modules
 const returnUtils = require("./utils/return")(app);
