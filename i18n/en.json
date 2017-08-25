@@ -17,6 +17,8 @@
         "CONTACT_NOT_FOUND" : "Contact not found",
 	"INVALID_CONTACT": "You can not register yourself as an emergency contact.",
 	"CONTACT_EXISTS": "The emergency contact has already been registered",
+
+	"EMERGENCY_INSERTED" : "Emergency inserted with success",
     
 	"PLIVO_ACTIVATION_CODE": "Hi, to advance in your registration, please insert the following activation code in aplication: ",
 	"PLIVO_NEW_CONTACT": "signed you as an emergency contact in SafeAPP",

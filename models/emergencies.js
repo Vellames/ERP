@@ -21,5 +21,33 @@ module.exports = function(sequelize, Sequelize){
         }
     });
 
+    /**
+     * Get an emergency from database
+     * @param emergencyId Id of emergency
+     * @param callback Return callback
+     * @author Cassiano Vellames <c.vellames@outlook.com>
+     */
+    Emergencies.getEmergency = function(emergencyId, callback){
+        const EmergenciesLocales = sequelize.models.EmergenciesLocales;
+        const EmergencyTypes = sequelize.models.EmergencyTypes;
+
+        const params = {
+            where : { 
+                id: emergencyId
+            }, 
+            attributes: [
+                "id", "status", "created_at", "updated_at", "user_id"
+            ],
+            include: [
+                {model: EmergenciesLocales, attributes: ["id", "latitude", "longitude", "created_at", "updated_at"]}, 
+                {model: EmergencyTypes}
+            ]
+        }
+
+        Emergencies.findOne(params).then(function(emergency){
+            callback(emergency);
+        });
+    }
+
     return Emergencies;
 };

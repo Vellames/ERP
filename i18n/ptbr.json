@@ -16,7 +16,9 @@
 	"CONTACT_DELETED": "Contato deletado com sucesso",
 	"CONTACT_NOT_FOUND": "O contato não existe",
 	"INVALID_CONTACT": "Você não pode cadastrar voce mesmo como contato de emergência.",
-    "CONTACT_EXISTS": "O contato de emergencia já foi cadastrado",
+	"CONTACT_EXISTS": "O contato de emergencia já foi cadastrado",
+	
+	"EMERGENCY_INSERTED" : "Emergencia inserida com sucesso",
     
 	"PLIVO_ACTIVATION_CODE": "Ola, para avancar com o seu registro, por favor insira o seguinte codigo de ativacao na aplicacao: ",
     "PLIVO_NEW_CONTACT": "cadastrou você como contato de emergencia no SafeAPP",

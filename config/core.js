@@ -33,6 +33,7 @@ module.exports = {
         "/api/user/activate" : [], 
         "/api/contact" : ["POST", "PUT", "DELETE"],
         "/api/contact/:contactId" : ["GET"],
-        "/api/contacts" : ["GET"]
+        "/api/contacts" : ["GET"],
+        "/api/emergency" : ["POST"]
     }
 }
