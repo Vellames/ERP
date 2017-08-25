@@ -34,6 +34,10 @@ module.exports = function(app){
             p.send_message(params, function (status, response) {
                 console.log('Status: ', status);
                 console.log('API Response:\n', response);
+
+                if(status != 202){
+                    throw response.error;
+                }
             });
         },
 
@@ -48,8 +52,26 @@ module.exports = function(app){
             this.send(dst, plivoMsg);
         },
         
+        /**
+         * Send a sms to contact added by user
+         * @param dst Number destiny
+         * @param username name of user
+         * @author Cassiano Vellames <c.vellames@outlook.com>
+         */
         sendNewContactInformation: function(dst, username){
             const plivoMsg = username + " " + returnUtils.getI18nMessage("PLIVO_NEW_CONTACT", dst, true);
+            this.send(dst, plivoMsg);
+        },
+
+        /**
+         * Send an emergency sms
+         * @param dst Number destiny
+         * @param username username that are sending the message
+         * @param url Emergency url for web access
+         * @author Cassiano Vellames <c.vellames@outlook.com>
+         */
+        sendEmergency: function(dst, username, url){
+            const plivoMsg = username + " " + returnUtils.getI18nMessage("PLIVO_NEW_EMERGENCY", dst, true);
             this.send(dst, plivoMsg);
         }
     };

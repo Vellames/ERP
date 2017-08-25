@@ -20,8 +20,9 @@
 
 	"EMERGENCY_INSERTED" : "Emergency inserted with success",
     
-	"PLIVO_ACTIVATION_CODE": "Hi, to advance in your registration, please insert the following activation code in aplication: ",
+	"PLIVO_ACTIVATION_CODE": "Hi, to advance in your registration, please insert the following activation code in application: ",
 	"PLIVO_NEW_CONTACT": "signed you as an emergency contact in SafeAPP",
+	"PLIVO_NEW_EMERGENCY": "have an emergency and are needing you, please check this URL for more informations",
 
 	"UPLOADER_NO_FILE_SENT": "No file sent.",
 	"UPLOADER_INVALID_EXTENSION" : "Invalid extension.",

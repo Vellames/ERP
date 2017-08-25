@@ -24,28 +24,33 @@ module.exports = function(sequelize, Sequelize){
     /**
      * Get an emergency from database
      * @param emergencyId Id of emergency
-     * @param callback Return callback
+     * @param successCallback Return callback success
+     * @param failCallback return callback fail
      * @author Cassiano Vellames <c.vellames@outlook.com>
      */
-    Emergencies.getEmergency = function(emergencyId, callback){
+    Emergencies.getEmergency = function(emergencyId, successCallback, failCallback){
         const EmergenciesLocales = sequelize.models.EmergenciesLocales;
         const EmergencyTypes = sequelize.models.EmergencyTypes;
+        const Users = sequelize.models.Users;
 
         const params = {
             where : { 
                 id: emergencyId
             }, 
             attributes: [
-                "id", "status", "created_at", "updated_at", "user_id"
+                "id", "status", "created_at", "updated_at"
             ],
             include: [
                 {model: EmergenciesLocales, attributes: ["id", "latitude", "longitude", "created_at", "updated_at"]}, 
-                {model: EmergencyTypes}
+                {model: EmergencyTypes},
+                {model: Users, attributes: ["id", "name", "phone", "created_at", "updated_at"]}
             ]
         }
 
         Emergencies.findOne(params).then(function(emergency){
-            callback(emergency);
+            successCallback(emergency);
+        }).catch(function(err){
+            failCallback(err);
         });
     }
 
