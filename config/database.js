@@ -25,6 +25,19 @@ module.exports = {
             }
         }
     },
+    artillery : {
+        database: "safeapp_artillery",
+        username: "root",
+        password: "root",
+        params: {
+            logging: false,
+            host: "localhost",
+            dialect: "mysql",
+            define: {
+                underscored: true
+            }
+        }
+    },
     test : {
         database: "safeapp_test",
         username: "root",

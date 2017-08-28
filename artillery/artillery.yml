@@ -1,0 +1,14 @@
+config:
+  target: 'http://localhost:3000'
+  phases:
+    - duration: 30
+      arrivalRate: 30
+  defaults:
+    headers:
+      Content-Type: 'application/json'
+  processor: "./functions.js"
+scenarios:
+- flow:
+  - put:
+      url: "/api/user"
+      beforeRequest: "setJSONBody"

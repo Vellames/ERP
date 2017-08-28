@@ -28,6 +28,7 @@ module.exports = {
     },
 
     authorization: {
+        "/" : [],
         "/api/user" : ["GET", "PATCH"],
         "/api/user/": ["POST"],
         "/api/user/activate" : [], 

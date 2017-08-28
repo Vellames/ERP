@@ -35,7 +35,7 @@ module.exports = function(app){
         * @author Cassiano Vellames <c.vellames@outlook.com>
         */
         insert: function(req,res){
-
+            console.log("insert");
             if(req.body.phone == null){
                 const msg = returnUtils.getI18nMessage("MISSING_PARAM");
                 res.status(returnUtils.BAD_REQUEST).json(returnUtils.requestFailed(msg));
@@ -70,6 +70,7 @@ module.exports = function(app){
                        const msg = returnUtils.getI18nMessage("USER_INSERTED", req.body.phone, true);
                        res.status(returnUtils.OK_REQUEST).json(returnUtils.requestCompleted(msg, user));
                    }).catch(function(error){
+                       console.log(error);
                        res.status(returnUtils.INTERNAL_SERVER_ERROR).json(returnUtils.internalServerError());
                    });
                }

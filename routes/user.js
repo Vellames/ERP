@@ -4,7 +4,7 @@
  */
 
 const multiparty = require("connect-multiparty");
-
+var i =0;
 module.exports = function(app){
     const securityConfig = require("./../config/security")(app);
     var controller = app.controllers.user;
@@ -18,5 +18,6 @@ module.exports = function(app){
     
     app.get("/", function(req,res){
         res.json({"Hi" : "Aloha!!!!!!!!!"})
+        console.log("/ " + ++i);
     });
 };

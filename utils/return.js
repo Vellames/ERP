@@ -22,13 +22,17 @@ module.exports = function(app){
     function getI18nMessage(i18nKey, info,  isNumber){
         var locale = null;
         if(isNumber){
-            switch(info.substr(0,3)){
-                case "+55":
-                    locale = "ptbr";
-                    break;
-                default:
-                    locale = "en";
-                    break;
+            try{
+                switch(info.substr(0,3)){
+                    case "+55":
+                        locale = "ptbr";
+                        break;
+                    default:
+                        locale = "en";
+                        break;
+                }
+            } catch (err) {
+                locale = app.core.i18n.DEFAULT_LANGUAGE;
             }
         } else {
             // If locale is null or if is a invalid locale, set the default language
