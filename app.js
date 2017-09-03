@@ -9,6 +9,7 @@ const express = require("express");
 const expressLoad = require("express-load");
 const i18n = require("i18n");
 const cluster = require("cluster");
+const helmet = require("helmet");
 
 // My Modules
 const returnUtils = require("./utils/return")(app);
@@ -31,6 +32,9 @@ app.i18n = i18n;
 // Config body-parser
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
+
+// Using helmet for security
+app.use(helmet());
 
 // Middware for authorization routes
 const securityConfig = require("./config/security")(app);
