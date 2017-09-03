@@ -12,12 +12,11 @@ module.exports = function(sequelize, Sequelize){
         }
     }, {
         tableName: "emergency_types",
-        classMethods: {
-            associate: function(models){
-                EmergencyTypes.hasMany(models.Emergencies);
-            }
-        }
     });
+
+    EmergencyTypes.associate = (models) => {
+        EmergencyTypes.hasMany(models.Emergencies);
+    }
 
     return EmergencyTypes;
 };

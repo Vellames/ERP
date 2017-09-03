@@ -4,17 +4,22 @@ const path = require("path");
 module.exports = function(app){
     
     const returnUtils = require("./return")(app);
+    const USER_PHOTO_UPLOAD = 0;
+    const EMERGENCY_AUDIO_UPLOAD = 1;
 
     return {
+
+        USER_PHOTO_UPLOAD, EMERGENCY_AUDIO_UPLOAD,
 
         /**
          * Do the upload of a file to server
          * @param req Request object
          * @param res Response object
+         * @param uploadType Type of upload (user photo or emergency audio)
          * @param callback Callback function
          * @author Cassiano Vellames <c.vellames@outlook.com>
          */
-        upload: function(req, res, callback){
+        upload: function(req, res, uploadType, callback){
 
             // Check file
             if(req.files.file == null){
@@ -31,13 +36,21 @@ module.exports = function(app){
 
             // Move file to directory
             const tempPath = req.files.file.path;
-            const newPath = app.core.uploader.USER_PHOTOS_PATH + req.userInfo.id + extension;
+            
+            var basePath;
+            switch(uploadType){
+                case EMERGENCY_AUDIO_UPLOAD:
+                    basePath = app.core.uploader.EMERGENCY_AUDIO_UPLOAD;
+                    break;
+                case USER_PHOTO_UPLOAD:
+                default:
+                    basePath = app.core.uploader.USER_PHOTO_UPLOAD;
+                    break;
+            }
+
+            const newPath = basePath + req.userInfo.id + extension;
             fs.rename(tempPath, newPath, function(err){
-                if(err){
-                    callback(returnUtils.getI18nMessage("UPLOADER_ERROR", req.headers.locale));
-                } else {
-                    callback();
-                }
+                callback(err ? returnUtils.getI18nMessage("UPLOADER_ERROR", req.headers.locale) : null);
             })
             
         }

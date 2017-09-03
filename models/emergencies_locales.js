@@ -15,12 +15,11 @@ module.exports = function(sequelize, Sequelize){
         }
     }, {
         tableName: "emergencies_locales",
-        classMethods: {
-            associate: function(models){
-                EmergenciesLocales.belongsTo(models.Emergencies, {foreignKey: {allowNull: false}});
-            }
-        }
     });
+
+    EmergenciesLocales.associate = (models) => {
+        EmergenciesLocales.belongsTo(models.Emergencies, {foreignKey: {allowNull: false}});
+    }
 
     return EmergenciesLocales;
 };

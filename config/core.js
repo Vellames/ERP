@@ -9,6 +9,7 @@ module.exports = {
 
     uploader:{
         USER_PHOTOS_PATH: "public/users/photos/",
+        EMERGENCY_AUDIO_PATH: "public/emergencies/audios",
         ALLOWED_EXTENSIONS: [".png", ".jpg", ".jpeg"]
     },
 
@@ -35,6 +36,8 @@ module.exports = {
         "/api/contact" : ["POST", "PUT", "DELETE"],
         "/api/contact/:contactId" : ["GET"],
         "/api/contacts" : ["GET"],
-        "/api/emergency" : ["POST"]
+        "/api/emergency" : ["POST"],
+        "/api/emergency/add_location" : ["POST"],
+        "/api/emergency/update_status" : ["POST"],
     }
 }

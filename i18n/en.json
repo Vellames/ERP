@@ -1,5 +1,6 @@
 {
 	"INTERNAL_SERVER_ERROR": "Internal Server Error. Contact the support",
+	"NOT_FOUND": "My bad. The princess are in another castle",
 	"FORBIDDEN_REQUEST": "You are not authorized to access this route or do this action",
 	"INVALID_JSON": "Invalid JSON, please check your request",
 	"MISSING_PARAM": "Missing param(s), check your requisition",
@@ -19,6 +20,9 @@
 	"CONTACT_EXISTS": "The emergency contact has already been registered",
 
 	"EMERGENCY_INSERTED" : "Emergency inserted with success",
+	"EMERGENCY_LOCATION_INSERTED": "Emergency Location inserted with success",
+	"EMERGENCY_USER_IS_NOT_OWNER": "You are'nt owner of this emergency.",
+	"EMERGENCY_STATUS_UPDATED": "Emergency status updated.",
     
 	"PLIVO_ACTIVATION_CODE": "Hi, to advance in your registration, please insert the following activation code in application: ",
 	"PLIVO_NEW_CONTACT": "signed you as an emergency contact in SafeAPP",

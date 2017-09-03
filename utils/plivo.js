@@ -15,9 +15,12 @@ module.exports = function(app){
          * @param dst Number destiny
          * @param txt Text to send
          */
-        send: function(dst, txt){
+        send: function(dst, txt, callback){
 
             if(app.core.server.getEnvironment() != "production"){
+                if(callback){
+                    callback();
+                }
                 return;
             }
 
@@ -34,9 +37,8 @@ module.exports = function(app){
             p.send_message(params, function (status, response) {
                 console.log('Status: ', status);
                 console.log('API Response:\n', response);
-
-                if(status != 202){
-                    throw response.error;
+                if(callback){
+                    callback(status == 202 ? null : status);
                 }
             });
         },
@@ -70,9 +72,9 @@ module.exports = function(app){
          * @param url Emergency url for web access
          * @author Cassiano Vellames <c.vellames@outlook.com>
          */
-        sendEmergency: function(dst, username, url){
+        sendEmergency: function(dst, username, url, callback){
             const plivoMsg = username + " " + returnUtils.getI18nMessage("PLIVO_NEW_EMERGENCY", dst, true);
-            this.send(dst, plivoMsg);
+            this.send(dst, plivoMsg, callback);
         }
     };
 };

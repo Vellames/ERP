@@ -35,12 +35,17 @@ app.use(bodyParser.json());
 // Middware for authorization routes
 const securityConfig = require("./config/security")(app);
 app.use(function(req,res,next){
-    if(app.core.authorization[req.path].indexOf(req.method) >= 0){
-        securityConfig.checkAuthorization(req, res, function(){
+    try{
+        if(app.core.authorization[req.path].indexOf(req.method) >= 0){
+            securityConfig.checkAuthorization(req, res, function(){
+                next();
+            });
+        } else {
             next();
-        });
-    } else {
-        next();
+        }
+    } catch (err) {
+        console.log("Undefined route " + req.path);
+        //res.status(returnUtils.NOT_FOUND).json(returnUtils.notFound(req.headers.locale));
     }
 });
 

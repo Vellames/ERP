@@ -33,14 +33,13 @@ module.exports = function(sequelize, Sequelize){
             unique: true
         }
     }, {
-        tableName: "users",
-        classMethods: {
-            associate: function(models){
-                Users.hasMany(models.Contacts);
-                Users.hasMany(models.Emergencies);
-            }
-        }
+        tableName: "users"
     });
+
+    Users.associate = (models) => {
+        Users.hasMany(models.Contacts);
+        Users.hasMany(models.Emergencies);
+    }
 
     /**
      * Insert the activation code and access token in user creation

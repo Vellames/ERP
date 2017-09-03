@@ -48,10 +48,15 @@ module.exports = function(app){
         OK_REQUEST: 200,
         BAD_REQUEST : 400,
         FORBIDDEN_REQUEST: 403,
+        NOT_FOUND: 404,
         INTERNAL_SERVER_ERROR: 500,
 
         invalidJSON : function(locale){
             return getResponseJSON(getI18nMessage("INVALID_JSON", locale), null);
+        },
+
+        notFound: function(locale){
+            return getResponseJSON(getI18nMessage("NOT_FOUND", locale), null);
         },
 
         internalServerError: function(locale){

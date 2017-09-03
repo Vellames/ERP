@@ -14,13 +14,12 @@ module.exports = function(sequelize, Sequelize){
             allowNull: false
         }
     }, {
-        tableName: "contacts",
-        classMethods: {
-            associate: function(models){
-                Contacts.belongsTo(models.Users, {foreignKey: {allowNull: false}});
-            }
-        }
+        tableName: "contacts"
     });
+    
+    Contacts.associate = (models) => {
+        Contacts.belongsTo(models.Users, {foreignKey: {allowNull: false}});
+    }
 
     return Contacts;
 };

@@ -1,5 +1,6 @@
 {
 	"INTERNAL_SERVER_ERROR": "Erro interno no servidor. Contacte o suporte",
+	"NOT_FOUND": "Foi mal, a princesa está em outro castelo",
 	"FORBIDDEN_REQUEST": "Você não esta autorizado a acessar essa rota ou realizar essa ação",
 	"INVALID_JSON": "JSON invalido, por favor verifique sua requisição",
     "MISSING_PARAM": "Existem parametros faltando, cheque sua requisição",
@@ -19,6 +20,9 @@
 	"CONTACT_EXISTS": "O contato de emergencia já foi cadastrado",
 	
 	"EMERGENCY_INSERTED" : "Emergencia inserida com sucesso",
+	"EMERGENCY_LOCATION_INSERTED": "Localização da emergencia inserida com sucesso",
+	"EMERGENCY_USER_IS_NOT_OWNER": "Você não é dono dessa emergência.",
+	"EMERGENCY_STATUS_UPDATED": "Status da emergencia atualizado.",
     
 	"PLIVO_ACTIVATION_CODE": "Ola, para avancar com o seu registro, por favor insira o seguinte codigo de ativacao na aplicacao: ",
 	"PLIVO_NEW_CONTACT": "cadastrou você como contato de emergencia no SafeAPP",

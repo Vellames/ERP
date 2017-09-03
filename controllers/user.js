@@ -110,7 +110,7 @@ module.exports = function(app){
          * @author Cassiano Vellames <c.vellames@outlook.com>
          */
         updatePhoto: function(req,res){
-             uploader.upload(req,res, function(err){
+             uploader.upload(req ,res, uploader.USER_PHOTO_UPLOAD, function(err){
                 if(err){
                     res.status(returnUtils.BAD_REQUEST).json(returnUtils.requestFailed(err));
                 } else {

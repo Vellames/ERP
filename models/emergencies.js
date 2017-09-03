@@ -11,15 +11,14 @@ module.exports = function(sequelize, Sequelize){
             values: ["IN_PROGRESS", "SOLVED", "CANCELED", "EXPIRED"]
         }
     }, {
-        tableName: "emergencies",
-        classMethods: {
-            associate: function(models){
-                Emergencies.belongsTo(models.EmergencyTypes, {foreignKey: {allowNull: false}});
-                Emergencies.belongsTo(models.Users, {foreignKey: {allowNull: false}});
-                Emergencies.hasMany(models.EmergenciesLocales);
-            }
-        }
+        tableName: "emergencies"
     });
+
+    Emergencies.associate = (models) => {
+        Emergencies.belongsTo(models.EmergencyTypes, {foreignKey: {allowNull: false}});
+        Emergencies.belongsTo(models.Users, {foreignKey: {allowNull: false}});
+        Emergencies.hasMany(models.EmergenciesLocales);
+    }
 
     /**
      * Get an emergency from database
@@ -52,6 +51,23 @@ module.exports = function(sequelize, Sequelize){
         }).catch(function(err){
             failCallback(err);
         });
+    }
+
+    /**
+     * Checks if user is owner of emergency
+     * @param emergencyId Id of emergency
+     * @param userId Id of user
+     * @author Cassiano Vellames <c.vellames@outlook.com>
+     */
+    Emergencies.userIsOwner = async (emergencyId, userId) => {
+        const emergencyCount = await Emergencies.count(
+            {
+                where: {
+                    id: emergencyId,
+                    user_id: userId,
+                }
+            });
+        return emergencyCount === 1;  
     }
 
     return Emergencies;
