@@ -39,6 +39,7 @@ app.use(helmet());
 // Middware for authorization routes
 const securityConfig = require("./config/security")(app);
 app.use(function(req,res,next){
+    console.log(req.originalUrl);
     try{
         if(app.core.authorization[req.path].indexOf(req.method) >= 0){
             securityConfig.checkAuthorization(req, res, function(){

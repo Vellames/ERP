@@ -37,6 +37,7 @@ module.exports = {
         "/api/contact/:contactId" : ["GET"],
         "/api/contacts" : ["GET"],
         "/api/emergency" : ["POST"],
+        "/api/emergency/5" : [],
         "/api/emergency/add_location" : ["POST"],
         "/api/emergency/update_status" : ["POST"],
     }

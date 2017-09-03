@@ -7,6 +7,20 @@ module.exports = function(app){
     const returnUtils = require("./../utils/return")(app);
 
     return {
+
+        /**
+         * Get info of an emergency
+         * @author Cassiano Vellames <c.vellames@outlook.com>
+         */
+        getOne: (req, res) => {
+            Emergencies.getEmergency(req.params.emergencyId, (emergency) => {
+                res.status(returnUtils.OK_REQUEST).json(returnUtils.requestCompleted(null, emergency));
+            }, 
+            () => {
+                res.status(returnUtils.INTERNAL_SERVER_ERROR).json(returnUtils.internalServerError());
+            })
+        },
+
         /**
          * Inserts a new emergency in database
          * @author Cassiano Vellames <c.vellames@outlook.com>

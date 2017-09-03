@@ -166,7 +166,6 @@ module.exports = function(app){
             }).catch(function(){
                 res.status(returnUtils.INTERNAL_SERVER_ERROR).json(returnUtils.internalServerError(req.headers.locale));
             });
-        }
-        
+        },
     };
 };
