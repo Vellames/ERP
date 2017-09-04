@@ -6,7 +6,7 @@ module.exports = function(app){
     
     const sequelize = app.db.sequelize;
     const Contacts = app.db.models.Contacts;
-    const securityConfig = require("./../config/security")(app);
+    const securityConfig = require("./../utils/security")(app);
     const returnUtils = require("./../utils/return")(app);
     
     return {

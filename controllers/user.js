@@ -8,7 +8,7 @@ module.exports = function(app){
     const bcrypt = require("bcrypt");
     const sequelize = app.db.sequelize;
     const Users = app.db.models.Users;
-    const securityConfig = require("./../config/security")(app);
+    const securityConfig = require("./../utils/security")(app);
     const returnUtils = require("./../utils/return")(app);
     const uploader = require("./../utils/uploader")(app);
     

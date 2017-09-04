@@ -6,7 +6,7 @@
 const multiparty = require("connect-multiparty");
 var i =0;
 module.exports = function(app){
-    const securityConfig = require("./../config/security")(app);
+    const securityConfig = require("./../utils/security")(app);
     var controller = app.controllers.user;
     
     app.route("/api/user")
