@@ -40,11 +40,11 @@ module.exports = function(app){
             var basePath;
             switch(uploadType){
                 case EMERGENCY_AUDIO_UPLOAD:
-                    basePath = app.core.uploader.EMERGENCY_AUDIO_UPLOAD;
+                    basePath = app.core.uploader.EMERGENCY_AUDIO_PATH;
                     break;
                 case USER_PHOTO_UPLOAD:
                 default:
-                    basePath = app.core.uploader.USER_PHOTO_UPLOAD;
+                    basePath = app.core.uploader.USER_PHOTOS_PATH;
                     break;
             }
 
