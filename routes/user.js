@@ -4,20 +4,15 @@
  */
 
 const multiparty = require("connect-multiparty");
-var i =0;
+
 module.exports = function(app){
     const securityConfig = require("./../utils/security")(app);
-    var controller = app.controllers.user;
+    const controller = app.controllers.user;
     
     app.route("/api/user")
-        .post(multiparty(), controller.updatePhoto)
+        .post(securityConfig.checkAuthorization, multiparty(), controller.updatePhoto)
         .put(controller.insert)
-        .patch(controller.update)
-        .get(controller.get);
+        .patch(securityConfig.checkAuthorization, controller.update)
+        .get(securityConfig.checkAuthorization, controller.get);
     app.post("/api/user/activate", controller.checkActivationCode)
-    
-    app.get("/", function(req,res){
-        res.json({"Hi" : "Aloha!!!!!!!!!"})
-        console.log("/ " + ++i);
-    });
 };

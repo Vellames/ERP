@@ -4,19 +4,15 @@
  */
 
 module.exports = function(app){
-    var controller = app.controllers.contact;
+    const securityConfig = require("./../utils/security")(app);
     const returnUtils = require("./../utils/return")(app);
+    const controller = app.controllers.contact;
         
     app.route("/api/contact")
-        .post(controller.insert)
-        .put(controller.update)
-        .delete(controller.remove);
+        .post(securityConfig.checkAuthorization, controller.insert)
+        .put(securityConfig.checkAuthorization, controller.update)
+        .delete(securityConfig.checkAuthorization, controller.remove);
 
-    app.get("/api/contact/:contactId", function(req, res){
-        controller.getOne(req,res);    
-    });
-
-    app.get("/api/contacts", function(req,res){
-        controller.getByUser(req,res);   
-    });        
+    app.get("/api/contact/:contactId", securityConfig.checkAuthorization, controller.getOne);
+    app.get("/api/contacts", securityConfig.checkAuthorization, controller.getByUser);        
 };
