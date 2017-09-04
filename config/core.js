@@ -27,18 +27,4 @@ module.exports = {
         AUTH_TOKEN: 'ZjY2MWViOTY3YzE3ZTc0YzA0MTllM2NiMGU1ZmQ0',
         SRC_NUMBER: "12345"
     },
-
-    authorization: {
-        "/" : [],
-        "/api/user" : ["GET", "PATCH"],
-        "/api/user/": ["POST"],
-        "/api/user/activate" : [], 
-        "/api/contact" : ["POST", "PUT", "DELETE"],
-        "/api/contact/:contactId" : ["GET"],
-        "/api/contacts" : ["GET"],
-        "/api/emergency" : ["POST"],
-        "/api/emergency/5" : [],
-        "/api/emergency/add_location" : ["POST"],
-        "/api/emergency/update_status" : ["POST"],
-    }
 }

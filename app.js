@@ -36,24 +36,6 @@ app.use(bodyParser.json());
 // Using helmet for security
 app.use(helmet());
 
-// Middware for authorization routes
-const securityConfig = require("./config/security")(app);
-app.use(function(req,res,next){
-    console.log(req.originalUrl);
-    try{
-        if(app.core.authorization[req.path].indexOf(req.method) >= 0){
-            securityConfig.checkAuthorization(req, res, function(){
-                next();
-            });
-        } else {
-            next();
-        }
-    } catch (err) {
-        console.log("Undefined route " + req.path);
-        //res.status(returnUtils.NOT_FOUND).json(returnUtils.notFound(req.headers.locale));
-    }
-});
-
 // Config loads
 expressLoad("db.js").
 then("controllers").
@@ -62,7 +44,6 @@ into(app);
 
 // Make public the users photo
 app.use("/users/photos", express.static("public/users/photos"));
-
 
 // Sync database and start up node server
 app.db.sequelize.sync({force:false}).done(function(){
