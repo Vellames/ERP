@@ -18,91 +18,75 @@ module.exports = function(app){
         * Get the basic information of user
         * @author Cassiano Vellames <c.vellames@outlook.com>
         */
-        get: function(req,res){
-            Users.findOne({
-                where: {
+        get: async (req,res) => {
+            try{
+                const user = await Users.findOne({ where: {
                     accessToken : req.headers.authorization
-                }
-            }).then(function(user){
+                }});
                 res.status(returnUtils.OK_REQUEST).json(returnUtils.requestCompleted(null, user))
-            }).catch(function(){
+            } catch (err) {
                 res.status(returnUtils.INTERNAL_SERVER_ERROR).json(returnUtils.internalServerError(req.headers.locale));
-            });
+            }
         },
         
         /**
         * Insert a new user in database or resend the activation code
         * @author Cassiano Vellames <c.vellames@outlook.com>
         */
-        insert: function(req,res){
-            console.log("insert");
+        insert: async (req,res) => {
             if(req.body.phone == null){
                 const msg = returnUtils.getI18nMessage("MISSING_PARAM");
                 res.status(returnUtils.BAD_REQUEST).json(returnUtils.requestFailed(msg));
                 return;
             }
 
-            Users.count({where : {phone : req.body.phone}}).then(function(count){
-               if(count === 1){
-
-                    const successCb = function(activationCode){
+            try {
+                const userCount = await Users.count({where : {phone : req.body.phone}});
+                if(userCount === 1){
+                    Users.updateActivationCode(req.body.phone).then((activationCode => {
                         app.plivo.sendActivationCode(req.body.phone, activationCode);
                         const msg = returnUtils.getI18nMessage("ACTIVATION_CODE_RESENT");
                         res.status(returnUtils.OK_REQUEST).json(returnUtils.requestCompleted(msg));
-                    };
-
-                    const failCb = function(){
+                    })).catch(() => {
                         res.status(returnUtils.INTERNAL_SERVER_ERROR).json(returnUtils.internalServerError());
-                    };
-
-                    Users.updateActivationCode(
-                        req.body.phone,
-                        successCb,
-                        failCb
-                    );
-
-               } else {
-                   Users.create({
-                       phone: req.body.phone
-                   }).then(function(user){
-                       app.plivo.sendActivationCode(req.body.phone, user.activationCode);
-                       user.activationCode = null;
-                       const msg = returnUtils.getI18nMessage("USER_INSERTED", req.body.phone, true);
-                       res.status(returnUtils.OK_REQUEST).json(returnUtils.requestCompleted(msg, user));
-                   }).catch(function(error){
-                       console.log(error);
-                       res.status(returnUtils.INTERNAL_SERVER_ERROR).json(returnUtils.internalServerError());
-                   });
-               }
-            });
+                    })
+                } else {
+                    const user = await Users.create({phone: req.body.phone});
+                    app.plivo.sendActivationCode(req.body.phone, user.activationCode);
+                    user.activationCode = null;
+                    const msg = returnUtils.getI18nMessage("USER_INSERTED", req.body.phone, true);
+                    res.status(returnUtils.OK_REQUEST).json(returnUtils.requestCompleted(msg, user));
+                }
+            } catch (err) {
+                res.status(returnUtils.INTERNAL_SERVER_ERROR).json(returnUtils.internalServerError(req.headers.locale));
+            }
         },
         
         /**
          * Update an user
          * @author Cassiano Vellames <c.vellames@outlook.com>
          */
-        update: function(req,res){
+        update: async (req,res) => {
             if(req.body.name == null){
                 const msg = returnUtils.getI18nMessage("MISSING_PARAM", req.headers.locale);
                 res.status(returnUtils.BAD_REQUEST).json(returnUtils.requestFailed(msg));
                 return;
             };
 
-            Users.update({
-                name: req.body.name
-            },{where: {
-                accessToken : req.headers.authorization
-            }
-            }).then(function(user){
-                if(user == 1){
+            try{
+                const usersUpdated = await Users.update({name: req.body.name},{where: {
+                    accessToken : req.headers.authorization
+                }});
+                
+                if(usersUpdated == 1){
                     const msg = returnUtils.getI18nMessage("USER_UPDATED", req.headers.locale);
                     res.status(returnUtils.OK_REQUEST).json(returnUtils.requestCompleted(msg));
                 } else {
                     res.status(returnUtils.INTERNAL_SERVER_ERROR).json(returnUtils.internalServerError(req.headers.locale));
                 }
-            }).catch(function(){
+            } catch (err) {
                 res.status(returnUtils.INTERNAL_SERVER_ERROR).json(returnUtils.internalServerError(req.headers.locale));
-            });
+            } 
         },
 
         /**

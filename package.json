@@ -3,7 +3,7 @@
   "description": "safeapp",
   "version": "0.1.0",
   "scripts": {
-    "start": "set NODE_ENV=production && node cluster.js",
+    "start": "set NODE_ENV=production && node app.js",
     "test": "NODE_ENV=test node ./node_modules/mocha/bin/mocha -t 15000",
     "test-windows": "set NODE_ENV=test && node ./node_modules/mocha/bin/mocha -t 15000",
     "ci": "NODE_ENV=ci node ./node_modules/mocha/bin/mocha -t 15000",

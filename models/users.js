@@ -4,7 +4,7 @@ function newActivationCode(){
     return  Math.floor(Math.random() * (max - min) + min);
 }
 
-module.exports = function(sequelize, Sequelize){
+module.exports = (sequelize, Sequelize) => {
     const Users = sequelize.define("Users", {
         id: {
             type: Sequelize.INTEGER.UNSIGNED,
@@ -45,7 +45,7 @@ module.exports = function(sequelize, Sequelize){
      * Insert the activation code and access token in user creation
      * @author Cassiano Vellames <c.vellames@outlook.com>
      */
-    Users.beforeCreate(function(user){
+    Users.beforeCreate((user) => {
         user.activationCode = newActivationCode();
     });
     
@@ -55,19 +55,19 @@ module.exports = function(sequelize, Sequelize){
     *   Renew the activation code
     *   @author Cassiano Vellames <c.vellames@outlook.com>
     */
-    Users.updateActivationCode = function(phoneNumber, successCallback, failedCallback){
+    Users.updateActivationCode = (phoneNumber) => {
         const activationCode = newActivationCode();
-        Users.update({
-            activationCode: activationCode
-        }, {
-            where: {
-                phone : phoneNumber
-            }
-        }).then(function(){
-            successCallback(activationCode)
-        }).catch(function(err){
-            failedCallback(err)
-        });
+
+        const update = { activationCode: activationCode };
+        const condition = { where: { phone : phoneNumber } };
+
+        return new Promise((resolve, reject) => {
+            Users.update(update, condition).then(() => {
+                resolve(activationCode)
+            }).catch((err) => {
+                reject(err)
+            });
+        })
     };
 
     return Users;

@@ -12,7 +12,6 @@ module.exports = function(app){
         .post(securityConfig.checkAuthorization, controller.insert)
         .put(securityConfig.checkAuthorization, controller.update)
         .delete(securityConfig.checkAuthorization, controller.remove);
-
     app.get("/api/contact/:contactId", securityConfig.checkAuthorization, controller.getOne);
     app.get("/api/contacts", securityConfig.checkAuthorization, controller.getByUser);        
 };
